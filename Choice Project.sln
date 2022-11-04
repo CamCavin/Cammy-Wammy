@@ -1,25 +1,89 @@
-﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.3.32819.101
-MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Choice Project", "Choice Project\Choice Project.csproj", "{2CB04689-8665-4F9E-8DBE-FF7A92CFC9AB}"
-EndProject
-Global
-	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
-		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{2CB04689-8665-4F9E-8DBE-FF7A92CFC9AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2CB04689-8665-4F9E-8DBE-FF7A92CFC9AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2CB04689-8665-4F9E-8DBE-FF7A92CFC9AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2CB04689-8665-4F9E-8DBE-FF7A92CFC9AB}.Release|Any CPU.Build.0 = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {EBBF4623-1D71-403D-9AD3-9E0109F646EC}
-	EndGlobalSection
-EndGlobal
+using System;
+
+class Program
+{
+    public static void Main(string[] args)
+    {
+        int room = 1; //This keeps track of what room the player is in. 
+        string response = ""; //This keeps track of what the player wants to do
+        bool gameFinished = false;
+        bool hasKey = false;
+
+        //While they are still playing let them type in new responses
+        while (gameFinished == false)
+        {
+            Console.WriteLine("What do you want to do?");
+            response = Console.ReadLine();
+
+            if (response.Equals("help"))
+            {
+                Console.WriteLine("You are playing Minecraft in Mr Deboer's class, Mr Deboer sees ur smelly fingers on the WASD keys, he says to you, are you playing Minecraft?");
+            }
+            {
+                switch (room)
+                {
+                    case 1:
+                        switch (response)
+                        {
+                            case "run out of the room":
+                                if (hasKey == true)
+                                {
+                                    Console.WriteLine("Your crocs are in sport mode so you run out of the room and you run to the front entrance.");
+                                    gameFinished = true; 
+                                }
+                                else
+                                {
+                                    Console.WriteLine("You don't have your right croc, you trip and fall on your face. You Lose :(");
+
+                                }
+                                break;
+
+                            case "grab my croc":
+                                Console.WriteLine("You grab your right croc.");
+                                room = 2;
+                                break;
+
+                            case "see":
+                                Console.WriteLine("The door is wide open and your right croc is on the table next to you. Your options are:run out the room, see, grab my croc.");
+                                break;
+                            default:
+                                Console.WriteLine("");
+                                break;
+                        }
+                        break;
+                    case 2:
+                        switch (response)
+                        {
+                            case "see":
+                                Console.WriteLine("You see you crocs aren't in sport mode and the door is wide open. Your choices are: put my crocs in sport mode, keep minecraft open.");
+                                break;
+
+                            case "put my crocs in sport mode":
+                                Console.WriteLine("You put your crocs in sport mode.");
+                                hasKey = true;
+                                room = 1;
+                                break;
+
+                            case "keep minecraft open":
+                                Console.WriteLine("You keep Minecraft open and you realize its game day so he asks you to play with him.");
+                                gameFinished = true;
+                                break;
+                            default:
+                                Console.WriteLine("");
+                                break;
+                        }
+                        break;
+                        
+                    case 3:
+                        Console.WriteLine("You SURVIVED!");
+                        gameFinished = true;
+                        break;
+                }//Room Switch
+            }//Help/Inv else
+        } //Game Finished Loop
+        Console.WriteLine("You SURVIVED!");
+        Console.WriteLine("You suvived Mr Deboer's class, you lucky ducky.");
+              
+    }
+
+}
